@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <title>Monarch Monarchy</title>
-    <meta name="description" content="Monarch Siting Tracking Application">
+    <meta name="description" content="Monarch Sighting Tracking Application">
     <meta name="author" content="Elana R.">
 
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,15 @@
 
     <div class="left_split left">
         <div class="centered">
-          <img src="img_avatar2.png" alt="Avatar woman">
+            <label> Select Year: </label><select id="year-dropdown" name="select-year">
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+            </select>
           <h2>Jane Flex</h2>
           <p>Some text.</p>
         </div>
@@ -24,11 +32,11 @@
       
       <div class="right_split right">
         <div class="centered">
-            <form action="http://localhost:3000/sitings" method="POST">
-                <label> Date: <input type="date" name="sitingDate" id="sitingDate" /></label><br />
-                <label> Town: <input type="text" name="sitingTown" id="sitingTown" /></label><br />
-                <label> State/Province: <input type="text" name="sitingStateProvince" id="sitingStateProvince" /></label><br />
-                <label> Number of Individuals: <input type="text" name="sitingNumber" id="sitingNumber" /></label><br />
+            <form action="http://localhost:3000/sightings" method="POST">
+                <label> Date: <input type="date" name="sightingDate" id="sightingDate" /></label><br />
+                <label> Town: <input type="text" name="sightingTown" id="sightingTown" /></label><br />
+                <label> State/Province: <input type="text" name="sightingStateProvince" id="sightingStateProvince" /></label><br />
+                <label> Number of Individuals: <input type="text" name="sightingNumber" id="sightingNumber" /></label><br />
         
         
                 <input type="submit" id="submit" value="Submit" />

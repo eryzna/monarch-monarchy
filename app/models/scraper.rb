@@ -23,19 +23,19 @@ class Scraper
     ]
     
     
-    def scrape_sitings
+    def scrape_sightings
         
-        sitings = []
+        sightings = []
         @@journey_north_urls.each do |url|
             
             html = open(url)
             
             doc = Nokogiri::HTML(html)
 
-            sitings_scrape = doc.css('.querylist').css('tbody').css('tr')
+            sightings_scrape = doc.css('.querylist').css('tbody').css('tr')
 
-            sitings_scrape.each do |siting|
-                td = siting.css('td')
+            sightings_scrape.each do |sighting|
+                td = sighting.css('td')
                 date = td[1].text
                 town = td[2].text
                 state_province = td[3].text
@@ -56,7 +56,7 @@ class Scraper
                     year_id = 1
                 end
         
-                siting_info = {
+                sighting_info = {
                     date: date, 
                     town: town, 
                     state_province: state_province, 
@@ -64,16 +64,16 @@ class Scraper
                     year_id: year_id
                     #season_id: season_id
                 }
-                sitings << siting_info 
+                sightings << sighting_info 
             end
         end
         #binding.pry
-        sitings
+        sightings
     end
 end
 
 
 #scrape = Scraper.new
-#scrape.scrape_sitings
+#scrape.scrape_sightings
 #scrape.scrape_images
 #ruby app/models/scraper.rb

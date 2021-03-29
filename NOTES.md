@@ -1,3 +1,13 @@
+NEED
+
+[] Filter for year
+[] Filter for location (query)
+[] Form for creating new siting
+
+
+
+
+
 def scrape_images
         
         images = []
@@ -28,3 +38,4 @@ def scrape_images
     end
 end
 #binding.pry
+

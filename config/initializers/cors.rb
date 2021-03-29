@@ -13,4 +13,3 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
-#fetch('http://localhost:3000/sitings').then(response => response.text()).then(text => console.log(text))

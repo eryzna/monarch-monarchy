@@ -1,6 +1,6 @@
-class CreateSitings < ActiveRecord::Migration[6.0]
+class CreateSightings < ActiveRecord::Migration[6.0]
   def change
-    create_table :sitings do |t|
+    create_table :sightings do |t|
       t.string :date
       t.string :town
       t.string :state_province
@@ -10,3 +10,5 @@ class CreateSitings < ActiveRecord::Migration[6.0]
     end
   end
 end
+
+

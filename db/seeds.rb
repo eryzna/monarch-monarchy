@@ -15,8 +15,8 @@ end
 #SCRAPE
 scrape = Scraper.new
 
-sitings = scrape.scrape_sitings
-Siting.create_from_collection(sitings)
+sightings = scrape.scrape_sightings
+Sighting.create_from_collection(sightings)
 
 #images = scrape.scrape_images
 #Image.create_from_collection(images)

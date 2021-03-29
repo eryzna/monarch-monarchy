@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_150149) do
+ActiveRecord::Schema.define(version: 2021_03_29_195319) do
 
-  create_table "sitings", force: :cascade do |t|
+  create_table "sightings", force: :cascade do |t|
     t.string "date"
     t.string "town"
     t.string "state_province"

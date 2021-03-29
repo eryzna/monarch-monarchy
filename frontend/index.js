@@ -14,7 +14,7 @@ function loadYearOptions() {
       .then(results => {
   
         years = Object.keys(results.message);
-        updateBreedList(breeds);
+        updateBreedList(years);
         addYearSelectListener();
       });
   }

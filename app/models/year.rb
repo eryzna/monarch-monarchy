@@ -1,4 +1,4 @@
 class Year < ApplicationRecord
-    has_many :sitings
+    has_many :sightings
 
 end
