@@ -7,19 +7,19 @@ class Scraper
     
     @@journey_north_urls = [
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2015&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2015&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2015&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2016&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2016&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2016&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2017&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2017&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2017&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2018&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2018&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2018&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2019&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2019&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2019&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2020&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2020&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2021&submit=View+Data',
-        'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2021&submit=View+Data'
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2020&submit=View+Data',
+        'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2021&submit=View+Data'
+        #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2021&submit=View+Data'
     ]
     
     
