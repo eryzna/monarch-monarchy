@@ -7,6 +7,9 @@ class YearsController < ApplicationController
 
     def show
         year = Year.find_by(id: params[:id])
-        render json: { id: year.id, sigting: sighting.bird, location: sighting.location }
+        render json: { id: year.id, sightings: year.sightings}
     end
+    
 end
+
+#render json: sighting, include: [:bird, :location]

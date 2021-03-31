@@ -5,7 +5,18 @@ NEED
 [] Form for creating new siting
 
 
+<form action="http://localhost:3000/sightings" method="POST">
+                <label> Date: <input type="date" name="sightingDate" id="sightingDate" /></label><br />
+                <label> Town: <input type="text" name="sightingTown" id="sightingTown" /></label><br />
+                <label> State/Province: <input type="text" name="sightingStateProvince" id="sightingStateProvince" /></label><br />
+                <label> Number of Individuals: <input type="text" name="sightingNumber" id="sightingNumber" /></label><br />
+        
+        
+                <input type="submit" id="submit" value="Submit" />
+</form>
 
+<img src="img_avatar.png" alt="Avatar man">
+fetch('http://localhost:3000/birds').then(response => response.json()).then(object => console.log(object))
 
 
 def scrape_images
