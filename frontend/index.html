@@ -17,7 +17,7 @@
     <div class="left_split left">
         <div class="centered">
             <h2>Search:</h2>
-            <label> Select Year: </label><select id="year-dropdown" name="select-year">
+            <label> Select Year: </label><select id="year-dropdown" name="year-dropdown">
                 <option value="2021">2021</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
@@ -27,6 +27,11 @@
                 <option value="2015">2015</option>
             </select>
             <button onclick = "filterSightingsByYear()" >Filter</button>
+            <br></br>
+
+            <label> Select State: </label><select id="state-dropdown" name="state-dropdown">
+            </select>
+            <button id="state-filter" name="state-filter">Filter</button>
         </div>
       </div>
       

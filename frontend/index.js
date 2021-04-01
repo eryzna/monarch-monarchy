@@ -1,9 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
+    addStates();
     loadSightingOptions();
 });
 
 let sightings = []
 
+const states = [
+              'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
+              'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 
+              'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 
+              'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+              'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' 
+]
+
+// Adds states to dropdown
+
+function addStates() {
+  let dropdown = document.getElementById('state-dropdown')
+
+  for (const state of states) {
+    var option = document.createElement("option");
+    option.value = state;
+    option.text = state.charAt(0).toUpperCase() + state.slice(1);
+    dropdown.appendChild(option);
+  }
+
+}
+
+//Event listener for state select 
+function addStateSelectListener() {
+  let filter = document.getElementById('state-filter')
+  let dropdown = document.getElementById('state-dropdown')
+  filter.addEventListener('click', function (event) {
+    filterSightingsByState(dropdown.value);
+    //
+    console.log(dropdown.value)
+  });
+
+}
+// Filters sightings by state
+function filterSightingsByState(state) {
+  updateSightingList(sightings.filter(sighting => sighting.state_province === state));
+
+}
+              
 // Loads sightings into the DOM
 
 function loadSightingOptions() {
@@ -12,9 +52,10 @@ function loadSightingOptions() {
       .then(res => res.json())
       .then(results => {
   
-        sightings = Object.keys(results);
+        sightings = Object.values(results);
         //updateSightingList(sightings);
         addYearSelectListener();
+        addStateSelectListener();
     });
 } 
 
