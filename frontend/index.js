@@ -6,15 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
 let sightings = []
 
 const states = [
-              'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
-              'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 
-              'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 
-              'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
-              'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' 
+  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
+  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 
+  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 
+  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' 
 ]
 
 // Adds states to dropdown
-
 function addStates() {
   let dropdown = document.getElementById('state-dropdown')
 
@@ -24,7 +23,6 @@ function addStates() {
     option.text = state.charAt(0).toUpperCase() + state.slice(1);
     dropdown.appendChild(option);
   }
-
 }
 
 //Event listener for state select 
@@ -41,7 +39,19 @@ function addStateSelectListener() {
 // Filters sightings by state
 function filterSightingsByState(state) {
   updateSightingList(sightings.filter(sighting => sighting.state_province === state));
+}
 
+function updatePage(sightings) {
+  let grid = document.getElementById('sightings-grid')
+  removeChildren(grid)
+  let itemOne = document.createElement('div')
+  let itemTwo = document.createElement('div')
+  itemOne.className = 'grid-item'
+  itemOne.innerText = 'Total Sightings:'
+  itemTwo.className = 'grid-item'
+  itemTwo.innerText = sightings.length
+  grid.appendChild(itemOne) 
+  grid.appendChild(itemTwo)
 }
               
 // Loads sightings into the DOM
@@ -59,10 +69,14 @@ function loadSightingOptions() {
     });
 } 
 
+
 function updateSightingList(sightings) {
   let ul = document.querySelector('#sighting-info');
+  let info = document.getElementById('app-info')
   removeChildren(ul);
+  removeChildren(info);
   sightings.forEach(sighting => addSighting(sighting));
+  updatePage(sightings)
 }
 
 function removeChildren(element) {

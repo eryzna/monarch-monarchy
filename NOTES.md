@@ -2,7 +2,11 @@ NEED
 
 [] Filter for year
 [] Filter for location (query)
+[] Filter by state
 [] Form for creating new siting
+[] Speed up data rendering
+[] Dynamic 2021 data
+[] Fast json gem
 
 
 <form action="http://localhost:3000/sightings" method="POST">

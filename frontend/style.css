@@ -32,7 +32,15 @@
   }
   
   /* If you want the content centered horizontally and vertically */
-  .centered {
+  .centered-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .centered-right {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,4 +52,20 @@
   .centered img {
     width: 150px;
     border-radius: 50%;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    padding-top: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
   }

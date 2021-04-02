@@ -15,7 +15,7 @@
     <script src="index.js"></script>
 
     <div class="left_split left">
-        <div class="centered">
+        <div class="centered-left">
             <h2>Search:</h2>
             <label> Select Year: </label><select id="year-dropdown" name="year-dropdown">
                 <option value="2021">2021</option>
@@ -36,11 +36,16 @@
       </div>
       
       <div class="right_split right">
-        <div class="centered">
+        <div class ="grid-container" id= "sightings-grid">
+        </div>
+        <div class="centered-right">
+         
           <ul id="sighting-info">
           </ul>
-          <h2>Welcome to Monarch Monarchy!</h2>
-          <p>Please select your search parameters or record a siting.</p>
+          <div id= "app-info">
+            <h2>Welcome to Monarch Monarchy!</h2>
+            <p>Please select your search parameters or record a sighting.</p>
+          </div>
         </div>
       </div>
 
