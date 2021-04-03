@@ -105,7 +105,8 @@ function removeChildren(element) {
 function filterSightingsByYear(year) {
   let yearsFilter = years.filter(y => y.value == year);
   let yearsReduce = yearsFilter.reduce(year => sightings)
-  console.log(yearsReduce.sightings)
+  sightings = yearsReduce.sightings
+  updateSightingList(sightings)
 }
 
 function showData (data) {
