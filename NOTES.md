@@ -1,5 +1,6 @@
 NEED
 
+[] Format listing objects
 [] Filter for year
 [] Filter for location (query)
 [] Filter by state
@@ -7,6 +8,8 @@ NEED
 [] Speed up data rendering
 [] Dynamic 2021 data
 [] Fast json gem
+[] Format list
+[] Total number of individuals
 
 
 <form action="http://localhost:3000/sightings" method="POST">

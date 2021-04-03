@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     addStates();
     loadSightingOptions();
+    loadYearOptions();
 });
 
 let sightings = []
+let years = []
 
 const states = [
   'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
@@ -62,12 +64,25 @@ function loadSightingOptions() {
       .then(res => res.json())
       .then(results => {
   
-        sightings = Object.values(results);
+        sightings = results;
         //updateSightingList(sightings);
-        addYearSelectListener();
+        //addYearSelectListener();
         addStateSelectListener();
     });
 } 
+
+function loadYearOptions() {
+  const yearUrl = 'http://localhost:3000/years';
+  fetch (yearUrl)
+    .then(res => res.json())
+    .then(results => {
+      years = results
+      console.log(years)
+
+      addYearSelectListener();
+    
+    });
+}
 
 
 function updateSightingList(sightings) {
@@ -88,14 +103,19 @@ function removeChildren(element) {
 }
 
 function filterSightingsByYear(year) {
-  updateSightingList(sightings.filter(sighting => sighting.year === year));
+  let yearsFilter = years.filter(y => y.value == year);
+  let yearsReduce = yearsFilter.reduce(year => sightings)
+  console.log(yearsReduce.sightings)
+}
+
+function showData (data) {
+  console.log(data)
 }
 
 function addYearSelectListener() {
   let yearDropdown = document.querySelector('#year-dropdown');
   yearDropdown.addEventListener('change', function (event) {
-    filterSightingsByYear(event.target.value);
-    //
+    filterSightingsByYear(event.target.value)
     console.log(event.target.value)
   });
 }
@@ -103,7 +123,7 @@ function addYearSelectListener() {
 function addSighting(sighting) {
   let ul = document.querySelector('#sighting-info');
   let li = document.createElement('li');
-  li.innerText = sighting;
+  li.innerText = `Date: ${sighting.date}, City: ${sighting.town}, State/Province: ${sighting.state_province}, Number of Monarchs: ${sighting.num_of_individuals}`
   //li.style.cursor = 'pointer';
   ul.appendChild(li);
   //li.addEventListener('click', updateColor);

@@ -5,9 +5,10 @@ class SightingSerializer
     end
      
     def to_serialized_json
-       @sighting.to_json(:include => {
-            :year => {:only => [:value]}},
+       @sighting.to_json(
             :except => [:updated_at, :created_at, :year_id])
+           # :include => {
+               # :year => {:only => [:value]}},
     end
 
 end
