@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let sightings = []
 let years = []
+let citySightings = []
 
 const states = [
   'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
@@ -30,17 +31,38 @@ function addStates() {
 //Event listener for state select 
 function addStateSelectListener() {
   let filter = document.getElementById('state-filter')
+  let input = document.getElementById('city-search')
   let dropdown = document.getElementById('state-dropdown')
-  filter.addEventListener('click', function (event) {
+  filter.addEventListener('click', function () {
+    let city = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+    filterSightingsByCity(city)
+
     filterSightingsByState(dropdown.value);
+    
     //
-    console.log(dropdown.value)
+    //console.log(dropdown.value)
+    //console.log(input.value)
   });
 
 }
+
+function filterSightingsByCity(city) {
+  citySightings = sightings.filter(sighting => sighting.town === city);
+  console.log(citySightings)
+}
+
 // Filters sightings by state
 function filterSightingsByState(state) {
-  updateSightingList(sightings.filter(sighting => sighting.state_province === state));
+  console.log(state)
+  console.log(citySightings)
+  updateSightingList(citySightings.filter(sighting => sighting.state_province === state));
+}
+
+function searchCity() {
+  let input = document.getElementById('city-search').value
+  let city = input.charAt(0).toUpperCase() + input.slice(1);
+  //filterSightingsByCity(city)
+  //updateSightingList(sightings.filter(sighting => sighting.town === city))
 }
 
 function updatePage(sightings) {
@@ -68,6 +90,7 @@ function loadSightingOptions() {
         //updateSightingList(sightings);
         //addYearSelectListener();
         addStateSelectListener();
+        addClearParamsListener();
     });
 } 
 
@@ -77,8 +100,6 @@ function loadYearOptions() {
     .then(res => res.json())
     .then(results => {
       years = results
-      console.log(years)
-
       addYearSelectListener();
     
     });
@@ -109,16 +130,48 @@ function filterSightingsByYear(year) {
   updateSightingList(sightings)
 }
 
-function showData (data) {
-  console.log(data)
+function addYearSelectListener() {
+  let filter = document.querySelector('#year-filter');
+  let dropdown = document.getElementById("year-dropdown")
+
+  filter.addEventListener('click', function () {
+    filterSightingsByYear(dropdown.value)
+    console.log(dropdown.value)
+  });
 }
 
-function addYearSelectListener() {
-  let yearDropdown = document.querySelector('#year-dropdown');
-  yearDropdown.addEventListener('change', function (event) {
-    filterSightingsByYear(event.target.value)
-    console.log(event.target.value)
-  });
+function addClearParamsListener () {
+  let clear = document.getElementById('clear-params')
+  let dropdown = document.getElementById('year-dropdown')
+  let input = document.getElementById('city-search')
+  let ul = document.querySelector('#sighting-info');
+  let info = document.getElementById('app-info') 
+  let grid = document.getElementById('sightings-grid')
+  var h2 = document.createElement('h2')
+  var text = document.createTextNode("Welcome to Monarch Monarchy!")
+  var p = document.createElement('p')
+  var pText = document.createTextNode("Please select your search parameters or record a sighting.")
+
+  //let p = document.createElement('p').value = "Please select your search parameters or record a sighting."
+    
+  clear.addEventListener('click', function() {
+    dropdown.value = "None"
+    input.value = ""
+    
+    removeChildren(ul);
+    removeChildren(grid);
+    h2.appendChild(text)
+    p.appendChild(pText)
+    info.appendChild(h2)
+    info.appendChild(p)
+    //removeChildren(info);
+    //clearParams(dropdown.value)
+    //dropdown.value = "None"
+  })
+}
+
+function clearParams(values) {
+  
 }
 
 function addSighting(sighting) {
