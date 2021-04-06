@@ -14,7 +14,7 @@
     <!-- JavaScript file. -->
     <script src="index.js"></script>
 
-    <div class="left_split left">
+    <div class="left-split left">
         <div class="centered-left">
             <h2>Search:</h2>
             <label> Select Year: </label><select id="year-dropdown" name="year-dropdown">
@@ -41,13 +41,16 @@
         </div>
       </div>
       
-      <div class="right_split right">
+      <div class="right-split right">
+        <div class ="sightings-container scroll">
+          <ul id="sighting-info" style="text-align: left">
+          </ul>
+        </div>
         <div class ="grid-container" id= "sightings-grid">
         </div>
         <div class="centered-right">
          
-          <ul id="sighting-info">
-          </ul>
+          
           <div id= "app-info">
             <h2>Welcome to Monarch Monarchy!</h2>
             <p>Please select your search parameters or record a sighting.</p>

@@ -1,5 +1,5 @@
 /* Split the screen in half */
-.right_split {
+.right-split {
     height: 100%;
     width: 75%;
     position: fixed;
@@ -9,7 +9,7 @@
     padding-top: 20px;
   }
 
-  .left_split {
+  .left-split {
     height: 100%;
     width: 25%;
     position: fixed;
@@ -37,7 +37,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    text-align: left;
   }
 
   .centered-right {
@@ -53,6 +53,32 @@
     width: 150px;
     border-radius: 50%;
   }
+
+  .sightings-container {
+    border-width: 10px;
+    border-color: black;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 500px;
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+    padding-top: 10%;
+    text-align: center;
+  }
+
+  /*div.scroll {
+    margin:4px, 4px;
+    padding-top: 30%;
+    background-color: pink ;
+    width: 500px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
+  }*/
 
   .grid-container {
     display: grid;

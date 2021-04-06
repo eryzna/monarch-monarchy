@@ -141,12 +141,12 @@ function addYearSelectListener() {
 }
 
 function addClearParamsListener () {
-  let clear = document.getElementById('clear-params')
-  let dropdown = document.getElementById('year-dropdown')
-  let input = document.getElementById('city-search')
-  let ul = document.querySelector('#sighting-info');
-  let info = document.getElementById('app-info') 
-  let grid = document.getElementById('sightings-grid')
+  var clear = document.getElementById('clear-params')
+  var dropdown = document.getElementById('year-dropdown')
+  var input = document.getElementById('city-search')
+  var ul = document.querySelector('#sighting-info');
+  var info = document.getElementById('app-info')
+  var grid = document.getElementById('sightings-grid')
   var h2 = document.createElement('h2')
   var text = document.createTextNode("Welcome to Monarch Monarchy!")
   var p = document.createElement('p')
@@ -168,10 +168,6 @@ function addClearParamsListener () {
     //clearParams(dropdown.value)
     //dropdown.value = "None"
   })
-}
-
-function clearParams(values) {
-  
 }
 
 function addSighting(sighting) {
