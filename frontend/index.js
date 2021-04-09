@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let sightings = []
 let years = []
-let citySightings = []
 
 const states = [
   '','AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
@@ -28,7 +27,6 @@ function addStates() {
   }
 }
 //END STATE FUNCTIONS
-
               
 //SIGHTING FUNCTIONS
 function loadSightingOptions() {
@@ -192,9 +190,9 @@ function addAppInfo () {
 
 function addClearParamsListener () {
   var clear = document.getElementById('clear-params')
-  var yearDropdown = document.getElementById('year-dropdown')
-  var stateDropdown = document.getElementById('state-dropdown')
-  var input = document.getElementById('city-search')
+  var year = document.getElementById('year')
+  var state = document.getElementById('state')
+  var input = document.getElementById('city')
   var ul = document.querySelector('#sighting-info');
   var grid = document.getElementById('sightings-grid')
   var info = document.getElementById('app-info')
@@ -202,8 +200,8 @@ function addClearParamsListener () {
   //let p = document.createElement('p').value = "Please select your search parameters or record a sighting."
     
   clear.addEventListener('click', function() {
-    yearDropdown.value = "None"
-    stateDropdown.value = ""
+    year.value = ""
+    state.value = ""
     input.value = ""
     
     removeChildren(info);
