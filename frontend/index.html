@@ -17,8 +17,8 @@
     <div class="left-split left">
         <div class="centered-left">
             <h2>Search:</h2>
-            <label> Select Year: </label><select id="year-dropdown" name="year-dropdown">
-                <option value="None"></option>
+            <label> Select Year: </label><select id="year" name="year-dropdown">
+                <option value=""></option>
                 <option value="2021">2021</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
@@ -27,16 +27,14 @@
                 <option value="2016">2016</option>
                 <option value="2015">2015</option>
             </select>
-            <button id="year-filter" name="year-filter" >Filter</button>
             <br></br>
-            <h3>Filter by State</h3>
-            <label> State: </label><select id="state-dropdown" name="state-dropdown">
+            <label>State: </label><select id="state" name="state-dropdown">
             </select>
-            <button id="state-filter" name="state-filter">Filter</button>
             <br> </br>
-            <h3>Filter by City</h3>
-            <input id="city-search" type="text" name="search" placeholder="City">
+            <label>City: </label><input id="city" type="text" name="search" placeholder="Enter city">
             
+            <br></br>
+            <button id="filter" name="filter">Filter Sightings</button>
             <br></br>
             <button id="clear-params" name="clear-params"> Clear Params</button>
             

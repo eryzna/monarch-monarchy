@@ -16,9 +16,9 @@ const states = [
   'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' 
 ]
 
-// States
+//STATE FUNCTIONS
 function addStates() {
-  let dropdown = document.getElementById('state-dropdown')
+  let dropdown = document.getElementById('state')
 
   for (const state of states) {
     var option = document.createElement("option");
@@ -27,50 +27,10 @@ function addStates() {
     dropdown.appendChild(option);
   }
 }
+//END STATE FUNCTIONS
 
-function addStateSelectListener() {
-  let filter = document.getElementById('state-filter')
-  let dropdown = document.getElementById('state-dropdown')
-  filter.addEventListener('click', function () {
-      filterSightingsByState(dropdown.value);
-  });
-
-}
-
-//function filterSightingsByCity(city) {
-  //citySightings = sightings.filter(sighting => sighting.town === city);
-  //console.log(citySightings)
-  //let dropdown = document.getElementById('state-dropdown')
-  //filterSightingsByState(dropdown.value)
-  //console.log(dropdown.value)
-//}
-
- //Filters sightings by state
-function filterSightingsByState(state) {
-    updateSightingList(sightings.filter(sighting => sighting.state_province === state));
-}
-
-//function searchCity() {
-  //let input = document.getElementById('city-search').value
-  //let city = input.charAt(0).toUpperCase() + input.slice(1);
-  //filterSightingsByCity(city)
-  //updateSightingList(sightings.filter(sighting => sighting.town === city))
-//}
-
-function updatePage(sightings) {
-  let grid = document.getElementById('sightings-grid')
-  removeChildren(grid)
-  let itemOne = document.createElement('div')
-  let itemTwo = document.createElement('div')
-  itemOne.className = 'grid-item'
-  itemOne.innerText = 'Total Sightings:'
-  itemTwo.className = 'grid-item'
-  itemTwo.innerText = sightings.length
-  grid.appendChild(itemOne) 
-  grid.appendChild(itemTwo)
-}
               
-// Sightings
+//SIGHTING FUNCTIONS
 function loadSightingOptions() {
     const sightingUrl = 'http://localhost:3000/sightings'
     fetch(sightingUrl)
@@ -78,9 +38,7 @@ function loadSightingOptions() {
       .then(results => {
   
         sightings = results;
-        //updateSightingList(sightings);
-        //addYearSelectListener();
-        addStateSelectListener();
+        addFilterSelectListener();
         addClearParamsListener();
     });
 } 
@@ -102,40 +60,112 @@ function addSighting(sighting) {
   ul.appendChild(li);
   //li.addEventListener('click', updateColor);
 }
-//
+//END SIGHTING FUNCTIONS
 
-//Years
+//YEAR FUNCTIONS
 function loadYearOptions() {
   const yearUrl = 'http://localhost:3000/years';
   fetch (yearUrl)
     .then(res => res.json())
     .then(results => {
       years = results
-      addYearSelectListener();
+      //addYearSelectListener();
     
     });
 }
+//END YEAR FUNCTIONS
 
-function addYearSelectListener() {
-  let filter = document.querySelector('#year-filter');
-  let dropdown = document.getElementById("year-dropdown")
+//FILTER FUNCTIONS
+function filterSightingsByState(state) {
+  console.log("filtering sightings by state")
+  updateSightingList(sightings.filter(sighting => sighting.state_province === state));
+}
 
-  filter.addEventListener('click', function () {
-    filterSightingsByYear(dropdown.value)
-    console.log(dropdown.value)
-  });
+function filterSightingsByCity(city) {
+  console.log("filtering sightings by city")
+  updateSightingList(sightings.filter(sighting => sighting.town === city))
 }
 
 function filterSightingsByYear(year) {
+  console.log("filtering sightings by year")
+  console.log(year)
   let yearsFilter = years.filter(y => y.value == year);
   let yearsReduce = yearsFilter.reduce(year => sightings)
   sightings = yearsReduce.sightings
   updateSightingList(sightings)
 }
-//
+
+function filterSightingsByStateYear(state, year) {
+  console.log("filtering sightings by state and year")
+  filterSightingsByYear(year);
+  filterSightingsByState(state)
+}
+
+function filterSightingsByCityState(city, state) {
+  console.log("filtering sightings by city state")
+  filterSightingsByState(state);
+  filterSightingsByCity(city)
+}
+
+function filterSightingsByCityStateYear(city, state, year) {
+  console.log("filtering sightings by city state year")
+  filterSightingsByYear(year);
+  filterSightingsByState(state);
+  filterSightingsByCity(city)
+}
 
 function addFilterSelectListener () {
+  var filter = document.getElementById("filter");
+  var year = document.getElementById("year");
+  var state = document.getElementById("state");
+  let city = document.getElementById("city")
 
+  filter.addEventListener('click', function() {
+    filterSightings(city, state, year)
+  })
+}
+
+function filterSightings(city, state, year) {
+  if (city.value === "" && state.value === "" && year.value === "") {
+    console.log("no values")
+    alert("Please enter your parameters.")
+  } else if (city.value != "" && state.value != "" && year.value != "") {
+    console.log("City, state, and year have values")
+    filterSightingsByCityStateYear(city.value, state.value, year.value)
+  } else if (city.value != "" && state.value === "" && year.value === "") {
+    console.log("city has value")
+    alert("Please enter a state.")
+  } else if (city.value != "" && state.value != "" && year.value === "") {
+    console.log("city and state has value")
+    filterSightingsByCityState(city.value, state.value)
+  } else if (city.value === "" && state.value != "" && year.value != "") {
+    console.log("state and year has value")
+    filterSightingsByStateYear(state.value, year.value)
+  } else if (city.value === "" && state.value != "" && year.value === "") {
+    console.log("state has value")
+    filterSightingsByState(state.value)
+  } else if (city.value === "" && state.value === "" && year.value != "") {
+    console.log("year has value")
+    filterSightingsByYear(year.value)
+  } else {
+    console.log("year and city has value")
+    alert("Please enter a state.")
+  }
+}
+//END FILTER FUNCTIONS
+
+//DOM FUNCTIONS
+function updatePage(sightings) {
+  let grid = document.getElementById('sightings-grid')
+  removeChildren(grid)
+  let itemOne = document.createElement('div')
+  let itemTwo = document.createElement('div')
+  itemOne.className = 'grid-item'
+  itemOne.innerText = 'Total Sightings:'
+  itemTwo.className = 'grid-item'
+  itemTwo.innerText = sightings.length
+  grid.appendChild(itemOne) 
+  grid.appendChild(itemTwo)
 }
 
 function removeChildren(element) {
@@ -154,15 +184,11 @@ function addAppInfo () {
   var p = document.createElement('p')
   var pText = document.createTextNode("Please select your search parameters or record a sighting.")
 
-  //removeChild(info);
-  
-
   h2.appendChild(text);
   p.appendChild(pText);
   info.appendChild(h2)
   info.appendChild(p);
 }
-
 
 function addClearParamsListener () {
   var clear = document.getElementById('clear-params')
