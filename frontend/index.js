@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    removeRecordSightingForm();
     addStates();
-    loadSightingOptions();
     loadYearOptions();
+    loadSightingOptions();
 });
 
 let sightings = []
@@ -156,14 +157,24 @@ function filterSightings(city, state, year) {
 function updatePage(sightings) {
   let grid = document.getElementById('sightings-grid')
   removeChildren(grid)
-  let itemOne = document.createElement('div')
-  let itemTwo = document.createElement('div')
+  var itemOne = document.createElement('div')
+  var itemTwo = document.createElement('div')
+  var itemThree = document.createElement('div')
+  var itemFour = document.createElement('div')
   itemOne.className = 'grid-item'
   itemOne.innerText = 'Total Sightings:'
   itemTwo.className = 'grid-item'
   itemTwo.innerText = sightings.length
+  itemThree.className = 'grid-item'
+  itemThree.innerText = 'Total Individuals:'
+  itemFour.className = 'grid-item'
+  let individuals = sightings.map(sighting => sighting.num_of_individuals)
+  let sum = individuals.reduce((a,b) => a + b, 0)
+  itemFour.innerText = sum
   grid.appendChild(itemOne) 
   grid.appendChild(itemTwo)
+  grid.appendChild(itemThree)
+  grid.appendChild(itemFour)
 }
 
 function removeChildren(element) {
@@ -216,6 +227,26 @@ function addClearParamsListener () {
   })
 }
 
+function removeRecordSightingForm () {
+  var form = document.getElementById('record-sighting-form')
+  form.remove()
+  addRecordSightingListener()
+}
 
+function addRecordSightingListener () {
+  var button = document.getElementById('record-sighting-button')
+  button.addEventListener('click', function() {
+    addRecordSightingForm()
+  })
+}
+
+function addRecordSightingForm () {
+  console.log("add form")
+  var div = document.getElementById('record-sighting')
+
+  //div.appendChild(form)
+ 
+  
+}
 
 
