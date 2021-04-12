@@ -243,8 +243,13 @@ function addRecordSightingListener () {
 function addRecordSightingForm () {
   console.log("add form")
   var div = document.getElementById('record-sighting')
-
-  //div.appendChild(form)
+  var recordSightingForm = document.createElement('div')
+  recordSightingForm.id = "record-sighting-form"
+  div.appendChild(recordSightingForm)
+  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="/action_page.php" method="get"><label for="name">First name:</label><input type="text" id="name" name="name"><br><br><label for="date">Date:</label><input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br><br><label for="num_of_individuals">Number of Monarchs:</label><input type="integer" id="num_of_individuals" name="num_of_individuals"><br><br><label for="city">City:</label><input type="text" id="city" name="city"><br><br><label for="state">State or Province:</label><input type="text" id="state_province" name="state_province"><br><br><input type="submit" value="Submit"></form></div>';
+  var sightingForm = document.getElementById('filter-sightings')
+  sightingForm.remove()
+  recordSightingForm.innerHTML = form
  
   
 }
