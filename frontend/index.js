@@ -43,7 +43,6 @@ class MySighting extends Sighting{
   constructor( sightingObj) {
     super( sightingObj )
     this.notes = sightingObj.notes
-    console.log(this)
   }
 }
 
@@ -83,6 +82,33 @@ function createSightingObjects(sightings) {
     })
 }
 
+function createSightingObjects(sightings) {
+  console.log("CreateSightingObjects")
+    sightings.forEach(function(e) {
+        sighting = new Sighting(e)
+        sighting.renderToPage()
+    })
+}
+
+function createMySightingObjects(sightings) {
+  console.log("createMysightingsObjeects")
+  sightings.forEach(function(e) {
+    sighting = new MySighting(e)
+    sighting.renderToPage()
+})
+
+}
+
+function updateMySightingList(sightings) {
+  let ul = document.querySelector('#sighting-info');
+  let info = document.getElementById('app-info')
+  removeChildren(ul);
+  removeChildren(info);
+  createMySightingObjects(sightings)
+  updatePage(sightings)
+
+}
+
 function updateSightingList(sightings) {
   let ul = document.querySelector('#sighting-info');
   let info = document.getElementById('app-info')
@@ -92,6 +118,7 @@ function updateSightingList(sightings) {
   //sightings.forEach(sighting => addSighting(sighting));
   updatePage(sightings)
 }
+
 //END SIGHTING FUNCTIONS
 
 //YEAR FUNCTIONS
@@ -187,7 +214,7 @@ function filterSightings(city, state, year) {
 
 function viewMySightings(username) {
   console.log(username)
-  updateSightingList(sightings.filter(sighting => sighting.username === username))
+  updateMySightingList(sightings.filter(sighting => sighting.username === username), username)
 }
 //END FILTER FUNCTIONS
 
