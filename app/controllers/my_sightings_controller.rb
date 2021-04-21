@@ -1,0 +1,2 @@
+class MySightingsController < ApplicationController
+end

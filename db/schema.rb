@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_195319) do
+ActiveRecord::Schema.define(version: 2021_04_19_184054) do
+
+  create_table "my_sightings", force: :cascade do |t|
+    t.string "first_name"
+    t.string "date"
+    t.string "town"
+    t.string "state_province"
+    t.integer "num_of_individuals"
+    t.integer "year_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "sightings", force: :cascade do |t|
     t.string "date"
@@ -20,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_195319) do
     t.integer "year_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username", default: "f"
   end
 
   create_table "years", force: :cascade do |t|

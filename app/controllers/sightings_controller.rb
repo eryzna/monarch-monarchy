@@ -19,6 +19,7 @@ class SightingsController < ApplicationController
 
     def create
         sighting = Sighting.new
+        sighting.username = params[:username]
         sighting.date = params[:date]
         sighting.town = params[:town]
         sighting.state_province = params[:state_province]

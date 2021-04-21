@@ -151,6 +151,11 @@ function filterSightings(city, state, year) {
     alert("Please enter a state.")
   }
 }
+
+function viewMySightings(username) {
+  console.log(username)
+  updateSightingList(sightings.filter(sighting => sighting.username === username))
+}
 //END FILTER FUNCTIONS
 
 //DOM FUNCTIONS
@@ -246,13 +251,68 @@ function addRecordSightingForm () {
   var recordSightingForm = document.createElement('div')
   recordSightingForm.id = "record-sighting-form"
   div.appendChild(recordSightingForm)
-  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Date: <input type="date" name="date" id="sightingDate" /></label><br /><label> Town: <input type="text" name="town" id="sightingTown" /></label><br/><label> State/Province: <input type="text" name="state_province" id="sightingStateProvince" /></label><br /><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber" /></label><br/><input type="submit" id="submit" value="Submit" /></form>'
+  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> Town: <input type="text" name="town" id="sightingTown"></label><br></br><label> State/Province: <input type="text" name="state_province" id="sightingStateProvince"></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
   //var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="/sightings" method="post"><label for="name">First name:</label><input type="text" id="name" name="name"><br><br><label for="date">Date:</label><input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br><br><label for="num_of_individuals">Number of Monarchs:</label><input type="integer" id="num_of_individuals" name="num_of_individuals"><br><br><label for="city">City:</label><input type="text" id="city" name="city"><br><br><label for="state">State or Province:</label><input type="text" id="state_province" name="state_province"><br><br><input type="submit" value="Submit"></form></div>';
   var sightingForm = document.getElementById('filter-sightings')
+  var mySightingButton = document.getElementById('my-sightings-button')
   sightingForm.remove()
+  mySightingButton.remove()
   recordSightingForm.innerHTML = form
- 
-  
+  addSightingSubmitListener()
 }
 
+function addSightingSubmitListener () {
+  var button = document.getElementById('submit-sighting')
+  button.addEventListener('click', function (){
+    viewLastSighting()
+  })
+}
+
+function viewLastSighting() {
+  let lastElement = sightings[sightings.length-1]
+  console.log(lastElement)
+  var appInfo = document.getElementById('app-info')
+  appInfo.remove()
+  window.alert("Sighting successfully submitted!")
+  addSighting(lastElement)
+}
+
+function addUsernameInputForm () {
+  console.log("add username")
+  var sightingForm = document.getElementById('filter-sightings')
+  var div = document.getElementById('username-input')
+  var button = document.getElementById('my-sightings-button')
+  var form = '<label>Enter Username</label><input id="username" type="text" name="search" placeholder="Username"><button id="enter-username" onclick="captureUsername()">View My Sightings</button>'
+  button.remove()
+  sightingForm.remove()
+  div.innerHTML = form
+  //addUsernameEventListener()
+}
+
+function captureUsername() {
+  var input = document.getElementById("username")
+  viewMySightings(input.value);
+  addUserInfo(input.value)
+}
+
+function addUserInfo(username) {
+  var div = document.createElement(div)
+  div.id = 'user-info'
+  var parent = document.querySelector('.centered-left')
+  var info = document.createElement('h1')
+  var input = document.getElementById('username-input')
+  input.remove()
+  info.innerText = 'Hello, '+ username + '!'
+  parent.appendChild(info)
+
+}
+
+function addBackButton() {
+  var button = document.createElement('button')
+  button.id = 'back-button'
+  var div = document.getElementById
+}
+function returnHome() {
+
+}
 
