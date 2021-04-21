@@ -30,24 +30,52 @@ function addStates() {
 //END STATE FUNCTIONS
               
 //SIGHTING FUNCTIONS
+class Sighting {
+  constructor(sightingObj) {
+    this.date = sightingObj.date
+    this.town = sightingObj.town
+    this.stateProvince = sightingObj.state_province
+    this.numOfIndiv = sightingObj.num_of_individuals
+  }
+
+  renderToPage() {
+      console.log("renderToPage")
+      let ul = document.querySelector('#sighting-info');
+      let li = document.createElement('li');
+      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}`
+      ul.appendChild(li);
+  }
+  
+
+}
+
 function loadSightingOptions() {
     const sightingUrl = 'http://localhost:3000/sightings'
     fetch(sightingUrl)
       .then(res => res.json())
       .then(results => {
-  
-        sightings = results;
+        sightings = results
+        
         addFilterSelectListener();
         addClearParamsListener();
     });
 } 
+
+function createSightingObjects(sightings) {
+  console.log("CreateSightingObjects")
+    sightings.forEach(function(e) {
+      sighting = new Sighting(e)
+      sighting.renderToPage()
+    })
+}
 
 function updateSightingList(sightings) {
   let ul = document.querySelector('#sighting-info');
   let info = document.getElementById('app-info')
   removeChildren(ul);
   removeChildren(info);
-  sightings.forEach(sighting => addSighting(sighting));
+  createSightingObjects(sightings)
+  //sightings.forEach(sighting => addSighting(sighting));
   updatePage(sightings)
 }
 
@@ -55,9 +83,7 @@ function addSighting(sighting) {
   let ul = document.querySelector('#sighting-info');
   let li = document.createElement('li');
   li.innerText = `Date: ${sighting.date}, City: ${sighting.town}, State/Province: ${sighting.state_province}, Number of Monarchs: ${sighting.num_of_individuals}`
-  //li.style.cursor = 'pointer';
   ul.appendChild(li);
-  //li.addEventListener('click', updateColor);
 }
 //END SIGHTING FUNCTIONS
 
