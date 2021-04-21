@@ -37,16 +37,18 @@ class Sighting {
     this.stateProvince = sightingObj.state_province
     this.numOfIndiv = sightingObj.num_of_individuals
   }
+}
 
-  renderToPage() {
-      console.log("renderToPage")
+class mySighting extends Sighting{
+
+}
+
+Sighting.prototype.renderToPage = function () {
+  console.log("renderToPage")
       let ul = document.querySelector('#sighting-info');
       let li = document.createElement('li');
       li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}`
       ul.appendChild(li);
-  }
-  
-
 }
 
 function loadSightingOptions() {
@@ -55,7 +57,7 @@ function loadSightingOptions() {
       .then(res => res.json())
       .then(results => {
         sightings = results
-        
+
         addFilterSelectListener();
         addClearParamsListener();
     });
