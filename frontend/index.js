@@ -39,8 +39,20 @@ class Sighting {
   }
 }
 
-class mySighting extends Sighting{
+class MySighting extends Sighting{
+  constructor( sightingObj) {
+    super( sightingObj )
+    this.notes = sightingObj.notes
+    console.log(this)
+  }
+}
 
+MySighting.prototype.renderToPage = function () {
+  console.log("mysightingsrenderToPage")
+      let ul = document.querySelector('#sighting-info');
+      let li = document.createElement('li');
+      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}, Notes: ${this.notes}`
+      ul.appendChild(li);
 }
 
 Sighting.prototype.renderToPage = function () {
@@ -79,13 +91,6 @@ function updateSightingList(sightings) {
   createSightingObjects(sightings)
   //sightings.forEach(sighting => addSighting(sighting));
   updatePage(sightings)
-}
-
-function addSighting(sighting) {
-  let ul = document.querySelector('#sighting-info');
-  let li = document.createElement('li');
-  li.innerText = `Date: ${sighting.date}, City: ${sighting.town}, State/Province: ${sighting.state_province}, Number of Monarchs: ${sighting.num_of_individuals}`
-  ul.appendChild(li);
 }
 //END SIGHTING FUNCTIONS
 
@@ -279,7 +284,7 @@ function addRecordSightingForm () {
   var recordSightingForm = document.createElement('div')
   recordSightingForm.id = "record-sighting-form"
   div.appendChild(recordSightingForm)
-  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> Town: <input type="text" name="town" id="sightingTown"></label><br></br><label> State/Province: <input type="text" name="state_province" id="sightingStateProvince"></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
+  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State/Province: <input type="text" name="state_province" id="sightingStateProvince"></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
   //var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="/sightings" method="post"><label for="name">First name:</label><input type="text" id="name" name="name"><br><br><label for="date">Date:</label><input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br><br><label for="num_of_individuals">Number of Monarchs:</label><input type="integer" id="num_of_individuals" name="num_of_individuals"><br><br><label for="city">City:</label><input type="text" id="city" name="city"><br><br><label for="state">State or Province:</label><input type="text" id="state_province" name="state_province"><br><br><input type="submit" value="Submit"></form></div>';
   var sightingForm = document.getElementById('filter-sightings')
   var mySightingButton = document.getElementById('my-sightings-button')
@@ -298,11 +303,14 @@ function addSightingSubmitListener () {
 
 function viewLastSighting() {
   let lastElement = sightings[sightings.length-1]
-  console.log(lastElement)
+  let mySighting = new MySighting(lastElement)
+  
+  console.log(mySighting)
   var appInfo = document.getElementById('app-info')
   appInfo.remove()
   window.alert("Sighting successfully submitted!")
-  addSighting(lastElement)
+  mySighting.renderToPage()
+
 }
 
 function addUsernameInputForm () {

@@ -24,7 +24,7 @@ class SightingsController < ApplicationController
         sighting.town = params[:town]
         sighting.state_province = params[:state_province]
         sighting.num_of_individuals = params[:num_of_individuals]
-        sighting.save
+        sighting.notes = params[:notes]
         sighting.year_id = sighting_year(sighting.date)
         sighting.save
     end
