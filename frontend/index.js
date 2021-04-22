@@ -163,15 +163,15 @@ function filterSightingsByStateYear(state, year) {
 
 function filterSightingsByCityState(city, state) {
   console.log("filtering sightings by city state")
-  filterSightingsByState(state);
-  filterSightingsByCity(city)
+  const citySightings = sightings.filter(sighting => sighting.town === city)
+  let stateInit = state.charAt(0)+state.charAt(1)
+  updateSightingList(citySightings.filter(sighting => sighting.state_province === stateInit))
 }
 
 function filterSightingsByCityStateYear(city, state, year) {
   console.log("filtering sightings by city state year")
   filterSightingsByYear(year);
-  filterSightingsByState(state);
-  filterSightingsByCity(city)
+  filterSightingsByCityState(city, state);
 }
 
 function addFilterSelectListener () {
