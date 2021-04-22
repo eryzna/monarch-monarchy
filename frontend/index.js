@@ -323,6 +323,7 @@ function addRecordSightingForm () {
   mySightingButton.remove()
   recordSightingForm.innerHTML = form
   addSightingSubmitListener()
+  addBackButton()
 }
 
 function postSighting() {
@@ -342,9 +343,6 @@ function postSighting() {
     },
     
 })
-//viewLastSighting
-
-
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
@@ -356,23 +354,6 @@ function postSighting() {
   });
 }
 
-//const data = { username: 'example' };
-
-//fetch('https://example.com/profile', {
-//  method: 'POST', // or 'PUT'
-//  headers: {
-//    'Content-Type': 'application/json',
-//  },
-//  body: JSON.stringify(data),
-//})
-//.then(response => response.json())
-//.then(data => {
-//  console.log('Success:', data);
-//})
-//.catch((error) => {
-//  console.error('Error:', error);
-//});
-
 function addSightingSubmitListener () {
   const button = document.getElementById('submit-sighting')
   button.addEventListener('click', function (event){
@@ -383,15 +364,12 @@ function addSightingSubmitListener () {
 
 function viewSighting(sighting) {
   console.log("viewLasSighting")
-  //let lastElement = sightings[sightings.length-1]
   let mySighting = new MySighting(sighting)
-  
   console.log(mySighting)
   var appInfo = document.getElementById('app-info')
   appInfo.remove()
   window.alert("Sighting successfully submitted!")
   mySighting.renderToPage()
-
 }
 
 function addUsernameInputForm () {
@@ -399,10 +377,11 @@ function addUsernameInputForm () {
   var sightingForm = document.getElementById('filter-sightings')
   var div = document.getElementById('username-input')
   var button = document.getElementById('my-sightings-button')
-  var form = '<label>Enter Username</label><input id="username" type="text" name="search" placeholder="Username"><button id="enter-username" onclick="captureUsername()">View My Sightings</button>'
+  var form = '<h2>Enter Username</h2><input id="username" type="text" name="search" placeholder="Username"><br></br><button id="enter-username" onclick="captureUsername()">Enter</button>'
   button.remove()
   sightingForm.remove()
   div.innerHTML = form
+  addBackButton()
   //addUsernameEventListener()
 }
 
@@ -425,11 +404,17 @@ function addUserInfo(username) {
 }
 
 function addBackButton() {
-  var button = document.createElement('button')
+  const button = document.createElement('button')
   button.id = 'back-button'
-  var div = document.getElementById
+  button.innerText = "Go Back"
+  const div = document.getElementById('centered-left-bottom')
+  div.appendChild(button)
+  addBackButtonEventListener()
 }
-function returnHome() {
-
+function addBackButtonEventListener() {
+  const button = document.getElementById('back-button')
+  button.addEventListener('click', function(){
+    location.reload()
+  })
 }
 
