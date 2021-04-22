@@ -27,6 +27,7 @@ class SightingsController < ApplicationController
         sighting.notes = params[:notes]
         sighting.year_id = sighting_year(sighting.date)
         sighting.save
+        render json: SightingSerializer.new(sighting).to_serialized_json    
     end
 
     private

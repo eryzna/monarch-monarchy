@@ -6,7 +6,7 @@ NEED
 [x] Filter by state
 [x] Form for creating new siting
 [x] Speed up data rendering
-[] Dynamic 2021 data
+[] Update 2021 data
 [x] Fast json gem
 [x] Format list
 [x] Total number of individuals
@@ -14,6 +14,8 @@ NEED
 [] Add footer information
 [] Add image
 [] State dropdown
+[] On DOM load, submit
+[] Clear test data
 
 <form action="http://localhost:3000/sightings" method="POST">
                 <label> Date: <input type="date" name="sightingDate" id="sightingDate" /></label><br />

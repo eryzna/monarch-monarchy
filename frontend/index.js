@@ -9,15 +9,16 @@ let sightings = []
 let years = []
 
 const states = [
-  '','AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
-  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 
-  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 
-  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
-  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' 
+  '','AL-Alabama', 'AK-Alaska', 'AZ-Arizona', 'AR-Arkansas', 'CA-California', 'CO-Colorado', 'CT-Connecticut', 'DE-Delaware', 'FL-Florida', 'GA-Georgia', 
+  'HI-Hawaii', 'ID-Idaho', 'IL-Illinois', 'IN-Indiana', 'IA-Iowa', 'KS-Kansas', 'KY-Kentucky', 'LA-Louisiana', 'ME-Maine', 'MD-Maryland', 
+  'MA-Massachusetts', 'MI-Michigan', 'MN-Minnesota', 'MS-Mississippi', 'MO-Missouri', 'MT-Montana', 'NE-Nebraska', 'NV-Nevada', 'NH-New Hampshire', 'NJ-New Jersey', 
+  'NM-New Mexico', 'NY-New York', 'NC-North Carolina', 'ND-North Dakota', 'OH-Ohio', 'OK-Oklahoma', 'OR-Oregon', 'PA-Pennsylvania', 'RI-Rhode Island', 'SC-South Carolina', 
+  'SD-South Dakota', 'TN-Tennessee', 'TX-Texas', 'UT-Utah', 'VT-Vermont', 'VA-Virginia', 'WA-Washington', 'WV-West Virginia', 'WI-Wisconsin', 'WY-Wyoming' 
 ]
 
 //STATE FUNCTIONS
 function addStates() {
+  console.log("addstates")
   let dropdown = document.getElementById('state')
 
   for (const state of states) {
@@ -91,12 +92,10 @@ function createSightingObjects(sightings) {
 }
 
 function createMySightingObjects(sightings) {
-  console.log("createMysightingsObjeects")
-  sightings.forEach(function(e) {
-    sighting = new MySighting(e)
-    sighting.renderToPage()
-})
-
+    sightings.forEach(function(e) {
+      sighting = new MySighting(e)
+      sighting.renderToPage()
+    })
 }
 
 function updateMySightingList(sightings) {
@@ -137,7 +136,9 @@ function loadYearOptions() {
 //FILTER FUNCTIONS
 function filterSightingsByState(state) {
   console.log("filtering sightings by state")
-  updateSightingList(sightings.filter(sighting => sighting.state_province === state));
+  let stateInit = state.charAt(0)+state.charAt(1)
+  console.log(stateInit)
+  updateSightingList(sightings.filter(sighting => sighting.state_province === stateInit));
 }
 
 function filterSightingsByCity(city) {
@@ -302,35 +303,88 @@ function addRecordSightingListener () {
   var button = document.getElementById('record-sighting-button')
   button.addEventListener('click', function() {
     addRecordSightingForm()
+    addStates()
   })
 }
 
 function addRecordSightingForm () {
   console.log("add form")
-  var div = document.getElementById('record-sighting')
-  var recordSightingForm = document.createElement('div')
+  
+  const div = document.getElementById('record-sighting')
+  const recordSightingForm = document.createElement('div')
   recordSightingForm.id = "record-sighting-form"
   div.appendChild(recordSightingForm)
-  var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State/Province: <input type="text" name="state_province" id="sightingStateProvince"></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
+  const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><button id="submit-sighting" value="post-sighting">Submit</button></form>'
+  //const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
   //var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="/sightings" method="post"><label for="name">First name:</label><input type="text" id="name" name="name"><br><br><label for="date">Date:</label><input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br><br><label for="num_of_individuals">Number of Monarchs:</label><input type="integer" id="num_of_individuals" name="num_of_individuals"><br><br><label for="city">City:</label><input type="text" id="city" name="city"><br><br><label for="state">State or Province:</label><input type="text" id="state_province" name="state_province"><br><br><input type="submit" value="Submit"></form></div>';
-  var sightingForm = document.getElementById('filter-sightings')
-  var mySightingButton = document.getElementById('my-sightings-button')
+  const sightingForm = document.getElementById('filter-sightings')
+  const mySightingButton = document.getElementById('my-sightings-button')
   sightingForm.remove()
   mySightingButton.remove()
   recordSightingForm.innerHTML = form
   addSightingSubmitListener()
 }
 
+function postSighting() {
+  console.log('post sighting')
+  const username = document.getElementById('sightingUsername')
+  const date = document.getElementById('sightingDate')
+  const city = document.getElementById('sightingTown')
+  const state = document.getElementById('state')
+  const number = document.getElementById('sightingNumber')
+  const notes = document.getElementById('notes')
+  const data = { username: username.value, date: date.value, town: city.value, state_province: state.value, num_of_individuals: number.value, notes: notes.value}
+  fetch('http://localhost:3000/sightings', {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    
+})
+//viewLastSighting
+
+
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      viewSighting(data)
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      console.log(data)
+  });
+}
+
+//const data = { username: 'example' };
+
+//fetch('https://example.com/profile', {
+//  method: 'POST', // or 'PUT'
+//  headers: {
+//    'Content-Type': 'application/json',
+//  },
+//  body: JSON.stringify(data),
+//})
+//.then(response => response.json())
+//.then(data => {
+//  console.log('Success:', data);
+//})
+//.catch((error) => {
+//  console.error('Error:', error);
+//});
+
 function addSightingSubmitListener () {
-  var button = document.getElementById('submit-sighting')
-  button.addEventListener('click', function (){
-    viewLastSighting()
+  const button = document.getElementById('submit-sighting')
+  button.addEventListener('click', function (event){
+    event.preventDefault()//viewLastSighting()
+    postSighting()
   })
 }
 
-function viewLastSighting() {
-  let lastElement = sightings[sightings.length-1]
-  let mySighting = new MySighting(lastElement)
+function viewSighting(sighting) {
+  console.log("viewLasSighting")
+  //let lastElement = sightings[sightings.length-1]
+  let mySighting = new MySighting(sighting)
   
   console.log(mySighting)
   var appInfo = document.getElementById('app-info')
