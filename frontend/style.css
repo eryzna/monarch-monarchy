@@ -1,4 +1,14 @@
 /* Split the screen in half */
+p, label, button, ul, .grid-item {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p, ul {
+  font-size: 1em;
+}
+h1, h2, h3 {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
 .right-split {
     height: 100%;
     width: 75%;
@@ -6,7 +16,7 @@
     z-index: 1;
     top: 0;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-top: 0px;
   }
 
   .left-split {
@@ -28,7 +38,18 @@
   /* Control the right side */
   .right {
     right: 0;
-    background-color: rgb(255, 255, 255);
+    
+
+  }
+
+  .background-img {
+    height: 100%;
+    width: auto;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
   }
   
   /* If you want the content centered horizontally and vertically */
@@ -55,18 +76,29 @@
   }
 
   .sightings-container {
-    border-width: 10px;
-    border-color: black;
-    top: 50%;
+    top: 57%;
     left: 50%;
-    width: 75%;
+    width: 63%;
     height: 500px;
     position: absolute;
     overflow-x: hidden;
     overflow-y: auto;
     transform: translate(-50%, -50%);
-    padding-top: 10%;
+    padding: 0px;
     text-align: center;
+  }
+
+  .sightings-info {
+    background-color: rgba(245, 245, 245, 0.7);
+    border:3px solid rgb(194, 104, 2);
+    border-radius: 5px;
+  }
+
+  .app-info {
+    background-color: rgba(245, 245, 245, 0.7);
+    border:3px solid rgb(194, 104, 2);
+    border-radius: 5px;
+    padding:3%
   }
 
   /*div.scroll {
@@ -83,14 +115,17 @@
   .grid-container {
     display: grid;
     grid-template-columns: auto auto;
-    padding: 10px;
-    padding-top: 50px;
+    margin-top: 100px;
+   
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgba(245, 245, 245, 0.7);
+    border:3px solid rgb(194, 104, 2);
+    border-radius: 5px;
   }
+
   .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
     padding: 5px;
     font-size: 20px;
     text-align: left;
@@ -104,6 +139,19 @@
     width: 50%;
     transform: translate(-50%, -50%);
     text-align: left;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 95%;
+    transform: translate(-50%, -50%);
+    text-align: right; 
+  }
+
+  .footer-img {
+    width: 15%;
   }
   
   

@@ -99,23 +99,37 @@ function createMySightingObjects(sightings) {
 }
 
 function updateMySightingList(sightings) {
+  console.log('updateMy sighting list')
+  console.log(sightings)
   let ul = document.querySelector('#sighting-info');
   let info = document.getElementById('app-info')
+  ul.className = "sightings-info"
   removeChildren(ul);
-  removeChildren(info);
+  //info.remove()
   createMySightingObjects(sightings)
   updatePage(sightings)
 
 }
 
+//need to clear sightings list when searching by username and add app info
+
 function updateSightingList(sightings) {
+  let container = document.createElement('div')
   let ul = document.querySelector('#sighting-info');
+  ul.className = "sightings-info"
   let info = document.getElementById('app-info')
   removeChildren(ul);
-  removeChildren(info);
-  createSightingObjects(sightings)
+  if (info) {
+    info.remove()
+    createSightingObjects(sightings)
+    updatePage(sightings)
+  }else {
+    createSightingObjects(sightings)
+    updatePage(sightings)
+  }
+  
   //sightings.forEach(sighting => addSighting(sighting));
-  updatePage(sightings)
+  
 }
 
 //END SIGHTING FUNCTIONS
@@ -222,6 +236,7 @@ function viewMySightings(username) {
 //DOM FUNCTIONS
 function updatePage(sightings) {
   let grid = document.getElementById('sightings-grid')
+  grid.className = 'grid-container'
   removeChildren(grid)
   var itemOne = document.createElement('div')
   var itemTwo = document.createElement('div')
@@ -252,17 +267,15 @@ function removeChildren(element) {
 }
 
 function addAppInfo () {
-  var info = document.getElementById('app-info')
-  var grid = document.getElementById('sightings-grid')
-  var h2 = document.createElement('h2')
-  var text = document.createTextNode("Welcome to Monarch Monarchy!")
-  var p = document.createElement('p')
-  var pText = document.createTextNode("Please select your search parameters or record a sighting.")
-
-  h2.appendChild(text);
-  p.appendChild(pText);
-  info.appendChild(h2)
-  info.appendChild(p);
+  const info = document.createElement('div')
+  info.id = "app-info"
+  info.className = "app-info"
+  const div = document.querySelector('.centered-right')
+  const text = '<h1>Welcome to Monarch Monarchy!</h1><p>Please select your search parameters or record a sighting.</p>'
+  info.innerHTML = text
+  div.appendChild(info)
+  
+  
 }
 
 function addClearParamsListener () {
@@ -282,8 +295,9 @@ function addClearParamsListener () {
     input.value = ""
     
     removeChildren(info);
-    removeChildren(ul);
-    removeChildren(grid);
+    ul.remove()
+    grid.remove()
+    
     addAppInfo();
   
     addStates();
