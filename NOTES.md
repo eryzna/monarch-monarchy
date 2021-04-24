@@ -6,16 +6,17 @@ NEED
 [x] Filter by state
 [x] Form for creating new siting
 [x] Speed up data rendering
-[] Update 2021 data
+[x] Update 2021 data
 [x] Fast json gem
 [x] Format list
 [x] Total number of individuals
-[] Add back button
-[] Add footer information
-[] Add image
-[] State dropdown
+[x] Add back button
+[x] Add footer information
+[x] Add image
+[x] State dropdown
 [] On DOM load, submit
-[] Clear test data
+[x] Clear test data
+[] Seasons
 
 <form action="http://localhost:3000/sightings" method="POST">
                 <label> Date: <input type="date" name="sightingDate" id="sightingDate" /></label><br />
