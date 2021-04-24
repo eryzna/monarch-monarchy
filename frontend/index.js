@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    loadSightingOptions();
     removeRecordSightingForm();
     addStates();
     loadYearOptions();
-    loadSightingOptions();
+    addMySightingsListener()
+    
 });
 
 let sightings = []
@@ -52,7 +54,7 @@ MySighting.prototype.renderToPage = function () {
       let ul = document.querySelector('#sighting-info');
       ul.className = "sightings-info"
       let li = document.createElement('li');
-      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}, Notes: ${this.notes}`
+      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Monarchs: ${this.numOfIndiv}, Notes: ${this.notes}`
       ul.appendChild(li);
 }
 
@@ -60,7 +62,7 @@ Sighting.prototype.renderToPage = function () {
   console.log("renderToPage")
       let ul = document.querySelector('#sighting-info');
       let li = document.createElement('li');
-      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}`
+      li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Monarchs: ${this.numOfIndiv}`
       ul.appendChild(li);
 }
 
@@ -257,6 +259,35 @@ function updatePage(sightings) {
   grid.appendChild(itemTwo)
   grid.appendChild(itemThree)
   grid.appendChild(itemFour)
+}
+
+function addMySightingsListener() {
+  const button = document.getElementById('my-sightings-button')
+  button.addEventListener('click', function(){
+    const info = document.getElementById('app-info')
+    const ul = document.getElementById('sighting-info')
+    const grid = document.getElementById('sightings-grid')
+
+    loadSightingOptions()
+    if (info) {
+      //removeChildren(info)
+      //addAppInfo()
+      addUsernameInputForm()
+    }else {
+      ul.className = ""
+      grid.className = ""
+      removeChildren(ul)
+      removeChildren(grid)
+      addAppInfo()
+      addUsernameInputForm()
+
+    }
+   
+    
+
+    
+
+  })
 }
 
 function removeChildren(element) {

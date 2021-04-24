@@ -6,6 +6,10 @@ p, label, button, ul, .grid-item {
 p, ul {
   font-size: 1em;
 }
+
+li {
+  padding: 2px
+}
 h1, h2, h3 {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
