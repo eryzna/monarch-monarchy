@@ -24,7 +24,7 @@ function addStates() {
   let dropdown = document.getElementById('state')
 
   for (const state of states) {
-    var option = document.createElement("option");
+    const option = document.createElement("option");
     option.value = state;
     option.text = state.charAt(0).toUpperCase() + state.slice(1);
     dropdown.appendChild(option);
@@ -192,10 +192,10 @@ function filterSightingsByCityStateYear(city, state, year) {
 }
 
 function addFilterSelectListener () {
-  var filter = document.getElementById("filter");
-  var year = document.getElementById("year");
-  var state = document.getElementById("state");
-  let city = document.getElementById("city")
+  const filter = document.getElementById("filter");
+  const year = document.getElementById("year");
+  const state = document.getElementById("state");
+  const city = document.getElementById("city")
 
   filter.addEventListener('click', function() {
     filterSightings(city, state, year)
@@ -241,10 +241,10 @@ function updatePage(sightings) {
   let grid = document.getElementById('sightings-grid')
   grid.className = 'grid-container'
   removeChildren(grid)
-  var itemOne = document.createElement('div')
-  var itemTwo = document.createElement('div')
-  var itemThree = document.createElement('div')
-  var itemFour = document.createElement('div')
+  let itemOne = document.createElement('div')
+  let itemTwo = document.createElement('div')
+  let itemThree = document.createElement('div')
+  let itemFour = document.createElement('div')
   itemOne.className = 'grid-item'
   itemOne.innerText = 'Total Sightings:'
   itemTwo.className = 'grid-item'
@@ -312,13 +312,13 @@ function addAppInfo () {
 }
 
 function addClearParamsListener () {
-  var clear = document.getElementById('clear-params')
-  var year = document.getElementById('year')
-  var state = document.getElementById('state')
-  var input = document.getElementById('city')
-  var ul = document.querySelector('#sighting-info');
-  var grid = document.getElementById('sightings-grid')
-  var info = document.getElementById('app-info')
+  const clear = document.getElementById('clear-params')
+  const year = document.getElementById('year')
+  const state = document.getElementById('state')
+  const input = document.getElementById('city')
+  const ul = document.querySelector('#sighting-info');
+  const grid = document.getElementById('sightings-grid')
+  const info = document.getElementById('app-info')
   
   //let p = document.createElement('p').value = "Please select your search parameters or record a sighting."
     
@@ -341,18 +341,31 @@ function addClearParamsListener () {
 }
 
 function removeRecordSightingForm () {
-  var form = document.getElementById('record-sighting-form')
+  const form = document.getElementById('record-sighting-form')
   form.remove()
   addRecordSightingListener()
 }
 
 function addRecordSightingListener () {
-  var button = document.getElementById('record-sighting-button')
+  const button = document.getElementById('record-sighting-button')
+  const ul = document.querySelector('#sighting-info');
+  const grid = document.getElementById('sightings-grid')
+  const info = document.getElementById('app-info')
   button.addEventListener('click', function() {
-    addRecordSightingForm()
-    addStates()
-  })
+    console.log('button pressed')
+      console.log('sightings')
+      ul.className = ""
+      grid.className = ""
+      removeChildren(ul)
+      removeChildren(grid)
+      removeChildren(info)
+      addAppInfo()
+      addRecordSightingForm()
+      addStates()    
+})
+  
 }
+
 
 function addRecordSightingForm () {
   console.log("add form")
@@ -362,8 +375,6 @@ function addRecordSightingForm () {
   recordSightingForm.id = "record-sighting-form"
   div.appendChild(recordSightingForm)
   const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><button id="submit-sighting" value="post-sighting">Submit</button></form>'
-  //const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="http://localhost:3000/sightings" method="POST"><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><input type="submit" id="submit-sighting" value="Submit" /></form>'
-  //var form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form action="/sightings" method="post"><label for="name">First name:</label><input type="text" id="name" name="name"><br><br><label for="date">Date:</label><input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br><br><label for="num_of_individuals">Number of Monarchs:</label><input type="integer" id="num_of_individuals" name="num_of_individuals"><br><br><label for="city">City:</label><input type="text" id="city" name="city"><br><br><label for="state">State or Province:</label><input type="text" id="state_province" name="state_province"><br><br><input type="submit" value="Submit"></form></div>';
   const sightingForm = document.getElementById('filter-sightings')
   const mySightingButton = document.getElementById('my-sightings-button')
   sightingForm.remove()
@@ -372,6 +383,8 @@ function addRecordSightingForm () {
   addSightingSubmitListener()
   addBackButton()
 }
+
+   
 
 function postSighting() {
   console.log('post sighting')
@@ -413,7 +426,7 @@ function viewSighting(sighting) {
   console.log("viewLasSighting")
   let mySighting = new MySighting(sighting)
   console.log(mySighting)
-  var appInfo = document.getElementById('app-info')
+  const appInfo = document.getElementById('app-info')
   appInfo.remove()
   window.alert("Sighting successfully submitted!")
   mySighting.renderToPage()
@@ -421,10 +434,10 @@ function viewSighting(sighting) {
 
 function addUsernameInputForm () {
   console.log("add username")
-  var sightingForm = document.getElementById('filter-sightings')
-  var div = document.getElementById('username-input')
-  var button = document.getElementById('my-sightings-button')
-  var form = '<h2>Enter Username</h2><input id="username" type="text" name="search" placeholder="Username"><br></br><button id="enter-username" onclick="captureUsername()">Enter</button>'
+  const sightingForm = document.getElementById('filter-sightings')
+  const div = document.getElementById('username-input')
+  const button = document.getElementById('my-sightings-button')
+  const form = '<h2>Enter Username</h2><input id="username" type="text" name="search" placeholder="Username"><br></br><button id="enter-username" onclick="captureUsername()">Enter</button>'
   button.remove()
   sightingForm.remove()
   div.innerHTML = form
@@ -433,17 +446,17 @@ function addUsernameInputForm () {
 }
 
 function captureUsername() {
-  var input = document.getElementById("username")
+  const input = document.getElementById("username")
   viewMySightings(input.value);
   addUserInfo(input.value)
 }
 
 function addUserInfo(username) {
-  var div = document.createElement(div)
+  let div = document.createElement('div')
   div.id = 'user-info'
-  var parent = document.querySelector('.centered-left')
-  var info = document.createElement('h1')
-  var input = document.getElementById('username-input')
+  const parent = document.querySelector('.centered-left')
+  const info = document.createElement('h1')
+  const input = document.getElementById('username-input')
   input.remove()
   info.innerText = 'Hello, '+ username + '!'
   parent.appendChild(info)
