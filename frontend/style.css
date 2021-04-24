@@ -131,6 +131,20 @@ h1, h2, h3 {
     text-align: left;
   }
 
+  .centered-left-top {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+  }
+
+  .crown-image {
+    width: 50%
+  }
+
+
   
   .centered-left-bottom {
     position: absolute;
