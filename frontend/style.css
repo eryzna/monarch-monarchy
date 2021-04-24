@@ -163,7 +163,7 @@ h1, h2, h3 {
 
   .footer {
     position: absolute;
-    bottom: 0px;
+    bottom: -20px;
     left: 50%;
     width: 95%;
     transform: translate(-50%, -50%);
@@ -172,6 +172,10 @@ h1, h2, h3 {
 
   .footer-img {
     width: 15%;
+  }
+
+  .back-button {
+    width: 50%
   }
   
   

@@ -358,7 +358,7 @@ function addRecordSightingListener () {
       grid.className = ""
       removeChildren(ul)
       removeChildren(grid)
-      removeChildren(info)
+      info.remove()
       addAppInfo()
       addRecordSightingForm()
       addStates()    
@@ -464,11 +464,13 @@ function addUserInfo(username) {
 }
 
 function addBackButton() {
-  const button = document.createElement('button')
-  button.id = 'back-button'
-  button.innerText = "Go Back"
+  const img = document.createElement('img')
+  img.src = "assets/arrow.png"
+  img.alt = "arrow"
+  img.id = "back-button"
+  img.className = "back-button"
   const div = document.getElementById('centered-left-bottom')
-  div.appendChild(button)
+  div.appendChild(img)
   addBackButtonEventListener()
 }
 function addBackButtonEventListener() {
