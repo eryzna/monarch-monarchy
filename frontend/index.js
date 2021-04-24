@@ -50,6 +50,7 @@ class MySighting extends Sighting{
 MySighting.prototype.renderToPage = function () {
   console.log("mysightingsrenderToPage")
       let ul = document.querySelector('#sighting-info');
+      ul.className = "sightings-info"
       let li = document.createElement('li');
       li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Number of Monarchs: ${this.numOfIndiv}, Notes: ${this.notes}`
       ul.appendChild(li);
@@ -105,7 +106,7 @@ function updateMySightingList(sightings) {
   let info = document.getElementById('app-info')
   ul.className = "sightings-info"
   removeChildren(ul);
-  //info.remove()
+  info.remove()
   createMySightingObjects(sightings)
   updatePage(sightings)
 
@@ -267,11 +268,12 @@ function removeChildren(element) {
 }
 
 function addAppInfo () {
+  console.log('add app info')
   const info = document.createElement('div')
   info.id = "app-info"
   info.className = "app-info"
   const div = document.querySelector('.centered-right')
-  const text = '<h1>Welcome to Monarch Monarchy!</h1><p>Please select your search parameters or record a sighting.</p>'
+  const text = '<h1>Welcome to Monarch Monarchy!</h1><p>Please select your search parameters, record your own sighting, or view your sighting records.</p>'
   info.innerHTML = text
   div.appendChild(info)
   
