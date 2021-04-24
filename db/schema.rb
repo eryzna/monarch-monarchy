@@ -16,17 +16,6 @@ ActiveRecord::Schema.define(version: 2021_04_21_212615) do
     t.string "img_url"
   end
 
-  create_table "my_sightings", force: :cascade do |t|
-    t.string "first_name"
-    t.string "date"
-    t.string "town"
-    t.string "state_province"
-    t.integer "num_of_individuals"
-    t.integer "year_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "sightings", force: :cascade do |t|
     t.string "date"
     t.string "town"

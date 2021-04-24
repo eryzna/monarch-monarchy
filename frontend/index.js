@@ -79,6 +79,7 @@ function loadSightingOptions() {
 } 
 
 function createSightingObjects(sightings) {
+  console.log(sightings)
   console.log("CreateSightingObjects")
     sightings.forEach(function(e) {
       sighting = new Sighting(e)
@@ -169,6 +170,7 @@ function filterSightingsByYear(year) {
   let yearsFilter = years.filter(y => y.value == year);
   let yearsReduce = yearsFilter.reduce(year => sightings)
   sightings = yearsReduce.sightings
+  console.log(sightings)
   updateSightingList(sightings)
 }
 

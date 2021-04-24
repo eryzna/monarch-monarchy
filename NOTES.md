@@ -62,3 +62,37 @@ def scrape_images
 end
 #binding.pry
 
+
+ def scrape_new_sightings
+        sightings = []
+        url = 'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2021&submit=View+Data'
+        
+        html = open(url)
+            
+        doc = Nokogiri::HTML(html)
+
+        sightings_scrape = doc.css('.querylist').css('tbody').css('tr')
+
+            sightings_scrape.each do |sighting|
+                td = sighting.css('td')
+                date = td[1].text
+                town = td[2].text
+                state_province = td[3].text
+                num_of_individuals = td[6].text
+                year_id = 1
+        
+                sighting_info = {
+                    date: date, 
+                    town: town, 
+                    state_province: state_province, 
+                    num_of_individuals: num_of_individuals,
+                    year_id: year_id
+                    #season_id: season_id
+                }
+                sightings << sighting_info 
+            end
+        #binding.pry
+        sightings
+    end
+end
+

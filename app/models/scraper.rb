@@ -71,40 +71,45 @@ class Scraper
         sightings
     end
 
-    def scrape_images
+    def scrape_new_sightings
+        sightings = []
+        url = 'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2021&submit=View+Data'
         
-        images = []
-        @@journey_north_urls.each do |url|
-        
-            html = open(url)
-     
-            doc = Nokogiri::HTML(html)
-    
-            sightings_scrape = doc.css('.querylist').css('tbody').css('tr')
-    
+        html = open(url)
+            
+        doc = Nokogiri::HTML(html)
+
+        sightings_scrape = doc.css('.querylist').css('tbody').css('tr')
+
             sightings_scrape.each do |sighting|
                 td = sighting.css('td')
-                img_url = td[7].css('img').attribute('src').value
-    
-                imgs_info = {
-                    img_url: img_url
+                date = td[1].text
+                town = td[2].text
+                state_province = td[3].text
+                num_of_individuals = td[6].text
+                year_id = 1
+        
+                sighting_info = {
+                    date: date, 
+                    town: town, 
+                    state_province: state_province, 
+                    num_of_individuals: num_of_individuals,
+                    year_id: year_id
+                    #season_id: season_id
                 }
-    
-                images << imgs_info if imgs_info[:img_url] != "/maps/graphics/spacer.gif"
-                binding.pry
+                sightings << sighting_info 
             end
         #binding.pry
-        #sitings
-        end
-        #binding.pry
-        images
+        sightings
     end
 end
 
 
 
 
+
 #scrape = Scraper.new
 #scrape.scrape_sightings
+#scrape.scrape_new_sightings
 #scrape.scrape_images
 #ruby app/models/scraper.rb

@@ -2,6 +2,8 @@ require 'pry'
 class SightingsController < ApplicationController
 
     def index
+        #Sighting.delete_current_sightings
+        Sighting.update_current_sightings
         sightings = Sighting.all
         #render json: sightings, include: [:year]
         render json: SightingSerializer.new(sightings).to_serialized_json
