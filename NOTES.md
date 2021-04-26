@@ -17,6 +17,9 @@ NEED
 [] On DOM load, submit
 [x] Clear test data
 [] Seasons
+[] Loading animation
+
+4/25/21: 1156
 
 <form action="http://localhost:3000/sightings" method="POST">
                 <label> Date: <input type="date" name="sightingDate" id="sightingDate" /></label><br />

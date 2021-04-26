@@ -18,11 +18,13 @@ class Sighting < ApplicationRecord
         current_sightings = Sighting.where(year_id: 1)
         new_record_count = new_sightings.length - current_sightings.length
         if new_record_count >= 1
-            sightings = new_sightings[0...new_record_count]
+            new_records = new_sightings[0...new_record_count]
+            sightings = Sighting.create_from_collection(new_records)
         else
-            sightings = []
+            new_records = []
         end
-        Sighting.create_from_collection(sightings)
+        
+        
     end
 
 end

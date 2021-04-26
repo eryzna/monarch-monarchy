@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadYearOptions();
     addMySightingsListener()
     
+    
 });
 
 let sightings = []
@@ -60,6 +61,7 @@ MySighting.prototype.renderToPage = function () {
 
 Sighting.prototype.renderToPage = function () {
   console.log("renderToPage")
+  //console.log(sightings)
       let ul = document.querySelector('#sighting-info');
       let li = document.createElement('li');
       li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Monarchs: ${this.numOfIndiv}`
@@ -75,19 +77,23 @@ function loadSightingOptions() {
 
         addFilterSelectListener();
         addClearParamsListener();
+        //sortSightings(sightings)
     });
 } 
 
-function createSightingObjects(sightings) {
+function sortSightings (sightings) {
+  sightings.sort(function(a,b){
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    new Date(b.date) - new Date(a.date);
+  });
   console.log(sightings)
-  console.log("CreateSightingObjects")
-    sightings.forEach(function(e) {
-      sighting = new Sighting(e)
-      sighting.renderToPage()
-    })
+
 }
 
+
 function createSightingObjects(sightings) {
+  //console.log(sightings)
   console.log("CreateSightingObjects")
     sightings.forEach(function(e) {
         sighting = new Sighting(e)
@@ -104,7 +110,7 @@ function createMySightingObjects(sightings) {
 
 function updateMySightingList(sightings) {
   console.log('updateMy sighting list')
-  console.log(sightings)
+  //console.log(sightings)
   let ul = document.querySelector('#sighting-info');
   let info = document.getElementById('app-info')
   ul.className = "sightings-info"
