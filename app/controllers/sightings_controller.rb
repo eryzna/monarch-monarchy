@@ -2,14 +2,12 @@ require 'pry'
 class SightingsController < ApplicationController
 
     def index
-        #Sighting.delete_current_sightings
-       # Sighting.update_current_sightings
-        unsorted = Sighting.all
-        sightings = unsorted.order('date desc')
-        #binding.pry
-        #render json: sightings, include: [:year]
+        
+        Sighting.update_current_sightings
+        sightings = Sighting.all
+        
         render json: SightingSerializer.new(sightings).to_serialized_json
-        #only: [:id, :date, :town, :state, :num_of_individuals, :year_id]
+        
     end
 
     def show
