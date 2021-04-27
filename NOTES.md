@@ -18,6 +18,7 @@ NEED
 [x] Clear test data
 [] Seasons
 [] Loading animation
+[] Need to create my sightings model. Otherwise, user sightings will be incorporated into sightings and thus updates from Journey North won't be accurately incorporated
 
 4/25/21: 1156
 
