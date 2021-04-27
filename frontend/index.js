@@ -86,7 +86,7 @@ function sortSightings (sightings) {
 sightings.sort(function(a,b){
   // Turn your strings into dates, and then subtract them
   // to get a value that is either negative, positive, or zero.
-  new Date(b.date) - new Date(a.date);
+  return new Date(b.date) - new Date(a.date);
 });
 console.log(sightings)
 
@@ -110,15 +110,18 @@ function createMySightingObjects(sightings) {
 }
 
 function updateMySightingList(sightings) {
-console.log('updateMy sighting list')
-//console.log(sightings)
-let ul = document.querySelector('#sighting-info');
-let info = document.getElementById('app-info')
-ul.className = "sightings-info"
-removeChildren(ul);
-removeChildren(info)
-createMySightingObjects(sightings)
-updatePage(sightings)
+  console.log('updateMy sighting list')
+
+  let ul = document.querySelector('#sighting-info');
+  let info = document.getElementById('app-info');
+  ul.className = "sightings-info";
+  removeChildren(ul);
+  removeChildren(info);
+  sightings.sort(function(a,b){
+    return new Date(b.date) - new Date(a.date);
+  });
+  createMySightingObjects(sightings)
+  updatePage(sightings)
 
 }
 
@@ -131,8 +134,14 @@ let info = document.getElementById('app-info')
   removeChildren(info)
   info.className = ""
   removeChildren(ul);
+  sightings.sort(function(a,b){
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    return new Date(b.date) - new Date(a.date);
+  });
   //ul.className = "sightings-info"
   //ul.className = "sightings-info"
+
   createSightingObjects(sightings)
   updatePage(sightings)
 }
