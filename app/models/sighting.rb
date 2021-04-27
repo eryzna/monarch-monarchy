@@ -19,7 +19,7 @@ class Sighting < ApplicationRecord
         new_record_count = new_sightings.length - current_sightings.length
         if new_record_count >= 1
             new_records = new_sightings[0...new_record_count]
-            sightings = Sighting.create_from_collection(new_records)
+            Sighting.create_from_collection(new_records)
         else
             new_records = []
         end
