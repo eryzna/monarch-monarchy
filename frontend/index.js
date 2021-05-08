@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 let sightings = []
 let years = []
 
+
 const states = [
   '','AL-Alabama', 'AK-Alaska', 'AZ-Arizona', 'AR-Arkansas', 'CA-California', 'CO-Colorado', 'CT-Connecticut', 'DE-Delaware', 'FL-Florida', 'GA-Georgia', 
   'HI-Hawaii', 'ID-Idaho', 'IL-Illinois', 'IN-Indiana', 'IA-Iowa', 'KS-Kansas', 'KY-Kentucky', 'LA-Louisiana', 'ME-Maine', 'MD-Maryland', 
@@ -70,15 +71,18 @@ Sighting.prototype.renderToPage = function () {
 
 function loadSightingOptions() {
   const sightingUrl = 'http://localhost:3000/sightings';
+  
   fetch(sightingUrl)
     .then(res => res.json())
     .then(results => {
       sightings = results;
+      
 
       addFilterSelectListener();
       addClearParamsListener();
       //sortSightings(sightings)
   });
+  
 } 
 
 function createSightingObjects(sightings) {
@@ -104,6 +108,7 @@ function updateMySightingList(sightings) {
   ul.className = "sightings-info";
   removeChildren(ul);
   removeChildren(info);
+  info.className = ""
   sightings.sort(function(a,b){
     return new Date(b.date) - new Date(a.date);
   });
@@ -224,7 +229,17 @@ function filterSightings(city, state, year) {
 
 function viewMySightings(username) {
   console.log(username)
-  updateMySightingList(sightings.filter(sighting => sighting.username === username), username)
+  const info = document.getElementById('app-info');
+  //info.className = "";
+  //const yearUrl = 'http://localhost:3000/years';
+  fetch ('http://localhost:3000/my_sightings')
+    .then(res => res.json())
+    .then(results => {
+      console.log(results)
+      updateMySightingList(results.filter(sighting => sighting.username === username), username)
+    })
+
+
 }
 //END FILTER FUNCTIONS
 
@@ -345,7 +360,7 @@ function addRecordSightingForm () {
   const recordSightingForm = document.createElement('div');
   recordSightingForm.id = "record-sighting-form";
   div.appendChild(recordSightingForm);
-  const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><button id="submit-sighting" value="post-sighting">Submit</button></form>';
+  const form = '<div id="record-sighting-form"><h2>Record a Sighting</h2><form><label> Username: <input type="text" name="username" id="sightingUsername"/><br></br><label> Date: <input type="date" name="date" id="sightingDate" placeholder = "mm/dd/yyy"</label><br></br><label> City: <input type="text" name="town" id="sightingTown"></label><br></br><label> State: <select id="state" name="state_province" ></select></label><br></br><label> Number of Individuals: <input type="text" name="num_of_individuals" id="sightingNumber"></label><br></br><label> Notes: <textarea type="text" name="notes" id="notes"></textarea></label><br></br><button id="submit-sighting" value="post-sighting">Submit</button></form>';
   const sightingForm = document.getElementById('filter-sightings');
   const mySightingButton = document.getElementById('my-sightings-button');
   sightingForm.remove();
@@ -364,7 +379,7 @@ function postSighting() {
   const number = document.getElementById('sightingNumber');
   const notes = document.getElementById('notes');
   const data = { username: username.value, date: date.value, town: city.value, state_province: state.value, num_of_individuals: number.value, notes: notes.value};
-  fetch('http://localhost:3000/sightings', {
+  fetch('http://localhost:3000/my_sightings', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(data),
     headers: {
@@ -416,8 +431,7 @@ function addUsernameInputForm () {
 
 function captureUsername() {
   const input = document.getElementById("username");
-  const info = document.getElementById('app-info');
-  info.className = "";
+  
   viewMySightings(input.value);
   addUserInfo(input.value);
 }

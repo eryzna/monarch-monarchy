@@ -101,3 +101,25 @@ end
     end
 end
 
+Sighting.prototype.renderToPage = function () {
+  console.log("renderToPage");
+  let ul = document.querySelector('#sighting-info');
+  const button = document.createElement('button')
+  button.innerText = "Like"
+  const counter = document.createElement('p')
+  counter.innerHTML = "0"
+  ul.className = "sightings-info";
+  let li = document.createElement('li');
+  li.innerText = `Date: ${this.date}, City: ${this.town}, State/Province: ${this.stateProvince}, Monarchs: ${this.numOfIndiv}`;
+  li.appendChild(button)
+  li.appendChild(counter)
+  ul.appendChild(li)
+  addLikeSightingListener(button, counter)
+
+}
+
+function addLikeSightingListener(button, counter) {
+  button.addEventListener('click', function() {
+    //counter.value 
+    counter.innerHTML = parseInt(counter.innerHTML) + 1
+})}
