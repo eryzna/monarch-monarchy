@@ -6,7 +6,7 @@ class Scraper
 
     
     @@journey_north_urls = [
-        'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2015&submit=View+Data',
+        #'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2015&submit=View+Data',
         #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2015&submit=View+Data',
         'https://journeynorth.org/sightings/querylist.html?season=spring&map=monarch-adult-spring&year=2016&submit=View+Data',
         #'https://journeynorth.org/sightings/querylist.html?season=fall&map=monarch-adult-fall&year=2016&submit=View+Data',
@@ -40,9 +40,7 @@ class Scraper
                 town = td[2].text
                 state_province = td[3].text
                 num_of_individuals = td[6].text
-                if date[7] == '5'
-                    year_id = 7
-                elsif date[7] == '6'
+                if date[7] == '6'
                     year_id = 6
                 elsif date[7] == '7'
                     year_id = 5
