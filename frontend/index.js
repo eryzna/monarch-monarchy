@@ -70,7 +70,7 @@ Sighting.prototype.renderToPage = function () {
 }
 
 function loadSightingOptions() {
-  const sightingUrl = 'https://monarchy-monarchy.herokuapp.com/sightings';
+  const sightingUrl = 'https://monarch-monarchy-api.herokuapp.com/sightings';
   
   fetch(sightingUrl)
     .then(res => res.json())
@@ -137,7 +137,7 @@ function updateSightingList(sightings) {
 
 //YEAR FUNCTIONS
 function loadYearOptions() {
-  const yearUrl = 'https://monarchy-monarchy.herokuapp.com/years';
+  const yearUrl = 'https://monarch-monarchy-api.herokuapp.com/years';
   fetch (yearUrl)
     .then(res => res.json())
     .then(results => {
@@ -232,7 +232,7 @@ function viewMySightings(username) {
   const info = document.getElementById('app-info');
   //info.className = "";
   //const yearUrl = 'http://localhost:3000/years';
-  fetch ('https://monarchy-monarchy.herokuapp.com/sightings')
+  fetch ('https://monarch-monarchy-api.herokuapp.com/sightings')
     .then(res => res.json())
     .then(results => {
       console.log(results)
@@ -379,7 +379,7 @@ function postSighting() {
   const number = document.getElementById('sightingNumber');
   const notes = document.getElementById('notes');
   const data = { username: username.value, date: date.value, town: city.value, state_province: state.value, num_of_individuals: number.value, notes: notes.value};
-  fetch('https://monarchy-monarchy.herokuapp.com/sightings', {
+  fetch('https://monarch-monarchy-api.herokuapp.com/sightings', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(data),
     headers: {
