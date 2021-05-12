@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   loadSightingOptions();
   removeRecordSightingForm();
-  addStates();
+  //addStates();
   loadYearOptions();
   addMySightingsListener()
   
