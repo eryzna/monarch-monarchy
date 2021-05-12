@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   loadSightingOptions();
   removeRecordSightingForm();
-  //addStates();
+  addStates();
   loadYearOptions();
   addMySightingsListener()
   
@@ -24,6 +24,7 @@ const states = [
 function addStates() {
   console.log("addstates");
   let dropdown = document.getElementById('state');
+  removeChildren(dropdown)
 
   for (const state of states) {
     const option = document.createElement("option");
