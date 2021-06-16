@@ -233,7 +233,7 @@ function viewMySightings(username) {
   const info = document.getElementById('app-info');
   //info.className = "";
   //const yearUrl = 'http://localhost:3000/years';
-  fetch ('https://monarch-monarchy-api.herokuapp.com/sightings')
+  fetch ('https://monarch-monarchy-api.herokuapp.com/my_sightings')
     .then(res => res.json())
     .then(results => {
       console.log(results)
