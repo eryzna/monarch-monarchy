@@ -230,7 +230,7 @@ function filterSightings(city, state, year) {
 
 function viewMySightings(username) {
   console.log(username)
-  const info = document.getElementById('app-info');
+  //const info = document.getElementById('app-info');
   //info.className = "";
   //const yearUrl = 'http://localhost:3000/years';
   fetch ('https://monarch-monarchy-api.herokuapp.com/my_sightings')
