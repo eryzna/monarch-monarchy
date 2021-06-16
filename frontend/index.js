@@ -380,7 +380,7 @@ function postSighting() {
   const number = document.getElementById('sightingNumber');
   const notes = document.getElementById('notes');
   const data = { username: username.value, date: date.value, town: city.value, state_province: state.value, num_of_individuals: number.value, notes: notes.value};
-  fetch('https://monarch-monarchy-api.herokuapp.com/sightings', {
+  fetch('https://monarch-monarchy-api.herokuapp.com/my_sightings', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(data),
     headers: {
