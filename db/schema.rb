@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_175447) do
     t.integer "year_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username", default: "f"
   end
 
   create_table "years", force: :cascade do |t|
