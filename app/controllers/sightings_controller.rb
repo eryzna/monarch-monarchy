@@ -15,23 +15,6 @@ class SightingsController < ApplicationController
         render json: SightingSerializer.new(sighting).to_serialized_json    
     end
 
-    def new
-        @sighting = Sighting.new
-    end
-
-    def create
-        sighting = Sighting.new
-        sighting.username = params[:username]
-        sighting.date = params[:date]
-        sighting.town = params[:town]
-        sighting.state_province = params[:state_province]
-        sighting.num_of_individuals = params[:num_of_individuals]
-        sighting.notes = params[:notes]
-        sighting.year_id = sighting_year(sighting.date)
-        sighting.save
-        render json: SightingSerializer.new(sighting).to_serialized_json    
-    end
-
     private
 
     def sighting_params
